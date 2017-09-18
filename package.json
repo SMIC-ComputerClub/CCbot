@@ -1,0 +1,22 @@
+{
+  "name": "hscc",
+  "version": "1.0.0",
+  "description": "discord bot for computer club",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMIC-ComputerClub/HSCC.git"
+  },
+  "author": "troll kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SMIC-ComputerClub/HSCC/issues"
+  },
+  "homepage": "https://github.com/SMIC-ComputerClub/HSCC#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  }
+}
