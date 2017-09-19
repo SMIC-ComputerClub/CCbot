@@ -9,6 +9,7 @@ console.log('token', asd.token)
 bot.registry.registerGroup('random');
 bot.registry.registerGroup('search');
 bot.registry.registerGroup('roles');
+bot.registry.registerGroup('music');
 bot.registry.registerCommandsIn(__dirname + "/commands");
 bot.registry.registerDefaults();
 
