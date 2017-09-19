@@ -1,5 +1,10 @@
 const commando = require('discord.js-commando');
 
+function generateHex()
+{
+    return(Math.floor(Math.random()*16777215).toString(16))
+}
+
 class createRole extends commando.Command{
     constructor(client)
     {
@@ -15,7 +20,7 @@ class createRole extends commando.Command{
     {
         message.guild.createRole({
             name: `${args}`,
-            // color: generateHex(),
+            color: generateHex(),
             // permissions: ['Administrator', 'ManageRoles']
         }).then(message.reply('created role '+ args))
     }
