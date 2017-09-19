@@ -22,7 +22,7 @@ class ImageSearch extends commando.Command
 			message.channel.sendMessage("Image search requires a Google Custom Search key.");
 			return;
 		}
-        request("https://www.googleapis.com/customsearch/v1?key=+AIzaSyBiw58K8MJOzZYIbDNTcJN0aSw8K1MOtSI&cx=005095525797302733243:qcilnmzij7q&num=1&searchType=image&q=" + args,
+        request(AuthDetails.google_custom_search + args,
             function (err, res, body)
             {
                 var data, error;
