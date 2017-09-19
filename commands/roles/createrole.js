@@ -17,7 +17,7 @@ class createRole extends commando.Command{
             name: `${args}`,
             // color: generateHex(),
             // permissions: ['Administrator', 'ManageRoles']
-        }).then(message.send('created role '+ args))
+        }).then(message.reply('created role '+ args))
     }
 }
 
