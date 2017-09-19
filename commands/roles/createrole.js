@@ -2,7 +2,7 @@ const commando = require('discord.js-commando');
 
 function generateHex()
 {
-    return(Math.floor(Math.random()*16777215).toString(16))
+    return(Math.floor(Math.random()*16777215).toString(16));
 }
 
 class createRole extends commando.Command{
