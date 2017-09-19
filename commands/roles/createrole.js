@@ -7,7 +7,7 @@ class createRole extends commando.Command{
         {
             name: 'createrole',
             group:'roles',
-            memberName:'creterole',
+            memberName:'createrole',
             description:'create a role with a given name'
         });
     }

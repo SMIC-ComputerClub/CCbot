@@ -21,9 +21,9 @@ bot.on('message', (message)=>
 });
 
 bot.on('guildMemberAdd', function(member){
-    let guild = member.guild;
-    guild.defaultChannel.send('Welcome' + member.toString+ 'to the SMIC Computer Club');
-    member.addRole
-})
+    const channel = member.guild.channels.find('name', 'general');
+    channel.send(`Welcome ${member}`)
+    member.addRole(member.guild.roles.find("name", "unconfirmed"));
+});
 
 bot.login(asd.token);
