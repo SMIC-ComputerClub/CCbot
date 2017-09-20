@@ -14,7 +14,7 @@ class selfAssign extends commando.Command{
     
     async run(message, args)
     {
-        message.member.addRole(message.member.guild.roles.find("name","lmao"));
+        message.member.addRole(message.member.guild.roles.find("name",`${args}`));
     }
 }
 

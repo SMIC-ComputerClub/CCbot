@@ -19,6 +19,8 @@
   "dependencies": {
     "discord.js": "^11.2.1",
     "discord.js-commando": "^0.9.0",
+    "ffmpeg-binaries": "^3.2.2-3",
+    "node-opus": "^0.2.7",
     "request": "^2.81.0"
   }
 }
