@@ -1,20 +1,7 @@
 const commando = require('discord.js-commando')
 const youtube = require('ytdl-core');
 
-// var servers = {};
-
-// function play(connection,message)
-// {
-//     var server = servers[message.guild.id];
-//     server.dispatcher = connection.playStream(youtube(server.queue[0], {filter: 'audioonly'}));
-//     server.queue.shift();
-//     server.dispatcher.on('end', function(){
-//         if(server.queue[0])
-//             play(connection, message);
-//         else
-//             connection.disconnect();
-//     })
-// }
+var queue =[];
 
 class playMusic extends commando.Command{
     constructor(client)
@@ -30,7 +17,6 @@ class playMusic extends commando.Command{
 
     async run(message,args)
     {
-        var queue = [];
         if(!message.member.voiceChannel)
         {
             message.reply('Please join a voice channel before you queue music');
@@ -39,31 +25,37 @@ class playMusic extends commando.Command{
         {
             message.reply('Please provide a link');
         }
-        else{
+        else if(queue.length==0)
+        {
             message.member.voiceChannel.join().then(connection=>
             {
-                //message.reply('Added')
-                //if(!queue[0])
-                //{
-                    queue.push(`${args}`);
-                    let dispatcher = connection.playStream(youtube(queue[0], {filter: 'audioonly'}));
-                //}
-                // else
-                // {
-                //     queue.push(`${args}`);
-                // }
-                // dispatcher.on('end', () => 
-                // {
-
-                //     dispatcher = connection.playStream(youtube(queue[0], {filter:'audioonly'}));
-                // });
-                  
-                dispatcher.on('error', e => 
+                queue.push(args);
+                //if(!message.member.voiceChannel)
+                console.log(queue);
+                let dispatcher = connection.playStream(youtube(queue[0], {filter: 'audioonly'}));
+                
+                dispatcher.on('end', () => 
                 {
+                    if(queue.length==0)
+                    {
+                        message.member.voiceChannel.leave();   
+                    }   
+                    else
+                    {   
+                        queue.shift();
+                        dispatcher = connection.playStream(youtube(queue[0], {filter:'audioonly'}));
+                    }
+                });
+
+                dispatcher.on('error', e => {
                     console.log(e);
                 });
-                  
             });
+        }
+        else
+        {
+            queue.push(args);
+            console.log(queue);
         }
     }
 }
