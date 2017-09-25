@@ -3,6 +3,19 @@ const youtube = require('ytdl-core');
 
 var queue =[];
 
+function play(connection, message)
+{
+    let dispatcher = connection.playStream(youtube(queue[0], {filter:'audioonly'}));
+    queue.shift();
+    dispatcher.on('end', function()
+    {
+        if(server.queue[0])
+            play(connection,message);
+        else
+            connection.disconnect();
+    })
+}
+
 class playMusic extends commando.Command{
     constructor(client)
     {
@@ -25,38 +38,16 @@ class playMusic extends commando.Command{
         {
             message.reply('Please provide a link');
         }
-        else if(queue.length==0)
+        queue.push(args);
+        if(!message.guild.voiceConnection)
         {
-            message.member.voiceChannel.join().then(connection=>
+            message.member.voiceChannel.join().then(function(connection)
             {
-                queue.push(args);
-                //if(!message.member.voiceChannel)
-                console.log(queue);
-                let dispatcher = connection.playStream(youtube(queue[0], {filter: 'audioonly'}));
-                
-                dispatcher.on('end', () => 
-                {
-                    if(queue.length==0)
-                    {
-                        message.member.voiceChannel.leave();   
-                    }   
-                    else
-                    {   
-                        queue.shift();
-                        dispatcher = connection.playStream(youtube(queue[0], {filter:'audioonly'}));
-                    }
-                });
-
-                dispatcher.on('error', e => {
-                    console.log(e);
-                });
+                play(connection,message);
             });
         }
-        else
-        {
-            queue.push(args);
-            console.log(queue);
-        }
+        // else
+        //     play(connection,message);
     }
 }
 
