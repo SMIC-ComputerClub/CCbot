@@ -9,10 +9,10 @@ function play(connection, message)
     queue.shift();
     dispatcher.on('end', function()
     {
-        if(server.queue[0])
+        if(queue[0])
             play(connection,message);
         else
-            connection.disconnect();
+             connection.disconnect();
     })
 }
 
@@ -38,7 +38,6 @@ class playMusic extends commando.Command{
         {
             message.reply('Please provide a link');
         }
-        queue.push(args);
         if(!message.guild.voiceConnection)
         {
             message.member.voiceChannel.join().then(function(connection)
@@ -46,8 +45,8 @@ class playMusic extends commando.Command{
                 play(connection,message);
             });
         }
-        // else
-        //     play(connection,message);
+        queue.push(args);
+        console.log(queue);
     }
 }
 
