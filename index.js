@@ -10,6 +10,7 @@ bot.registry.registerGroup('random');
 bot.registry.registerGroup('search');
 bot.registry.registerGroup('roles');
 bot.registry.registerGroup('music');
+bot.registry.registerGroup('alarm');
 bot.registry.registerCommandsIn(__dirname + "/commands");
 bot.registry.registerDefaults();
 
