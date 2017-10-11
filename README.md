@@ -1,2 +1,2 @@
 # CCbot
-zzz
+a discord bot written using discord.js-commando
