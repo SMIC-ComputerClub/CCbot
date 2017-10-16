@@ -1,5 +1,10 @@
 const commando = require('discord.js-commando')
 
+function sleep(ms) 
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 class remindMe extends commando.Command{
     constructor(client)
     {
@@ -14,7 +19,9 @@ class remindMe extends commando.Command{
 
     async run(message, args)
     {
-        //TODO
+        message.reply(`remind ${args} ms`);
+        await sleep(args);
+        message.reply('TIME\'S UP!');
     }
 }
 
