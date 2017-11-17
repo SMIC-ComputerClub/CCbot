@@ -24,7 +24,6 @@ class remindMe extends commando.Command{
         var spos = args.indexOf('s')
 
         var final = args.substring(spos+1)
-        console.log(final)
 
         var hours = parseInt(args.substring(hpos-2,hpos))*3600000
         var mins = parseInt(args.substring(mpos-2,mpos))*60000
