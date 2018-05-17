@@ -12,6 +12,7 @@ bot.registry.registerGroup('search')
 bot.registry.registerGroup('roles')
 bot.registry.registerGroup('alarm')
 bot.registry.registerGroup('music')
+bot.registry.registerGroup('poll')
 bot.registry.registerCommandsIn(__dirname + "/commands");
 bot.registry.registerDefaults();
 
@@ -27,8 +28,18 @@ bot.on('message', (message)=>
     }
 });
 
+bot.on('message', (message)=>
+{
+    var roll = Math.floor(Math.random()*3)+1
+    if((message.content.length>20)&&(message.content.length<30)&&(roll==1))
+    {
+        console.log(message.content.length)
+        message.channel.send('I am Henry Lin, plz fuck my attention-whore-ass!');
+    }
+});
+
 bot.on('guildMemberAdd', function(member){
-    const channel = member.guild.channels.find('name', 'general');
+    const channel = member.guild.channels.find('name', 'smicancer');
     channel.send(`Welcome ${member}`)
     member.addRole(member.guild.roles.find("name", "unconfirmed"));
 });
